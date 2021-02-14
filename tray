@@ -1,28 +1,70 @@
 #!/usr/bin/env /usr/bin/python3
 
-import sys
-from PyQt5 import QtWidgets, QtCore, QtGui
+import os
+from gi.repository import Gtk as gtk, AppIndicator3 as appindicator
 
-class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
+CURRPATH = os.path.dirname(os.path.realpath(__file__))
 
-    def __init__(self, icon, parent=None):
-        QtWidgets.QSystemTrayIcon.__init__(self, icon, parent)
-        menu = QtWidgets.QMenu(parent)
-        exitAction = menu.addAction("Exit")
-        self.setContextMenu(menu)
-        menu.triggered.connect(self.exit)
+def main():
+  indicator = appindicator.Indicator.new("customtray", CURRPATH+"/icon.ico", appindicator.IndicatorCategory.APPLICATION_STATUS)
+  indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+  indicator.set_menu(menu())
+  gtk.main()
 
-    def exit(self):
-        QtCore.QCoreApplication.exit()
+def menu():
+  menu = gtk.Menu()
+  
+  exitimg = gtk.Image()
+  exitimg.set_from_icon_name("gtk-cancel", 22)
+  exittray = gtk.ImageMenuItem('Quit')
+  exittray.set_image(exitimg)
+  exittray.set_always_show_image(True)
+  exittray.connect('activate', quit)
+  
+  hr = gtk.SeparatorMenuItem()
 
-def main(image):
-    app = QtWidgets.QApplication(sys.argv)
-    w = QtWidgets.QWidget()
-    trayIcon = SystemTrayIcon(QtGui.QIcon(image), w)
-    trayIcon.show()
-    sys.exit(app.exec_())
+  aboutimg = gtk.Image()
+  aboutimg.set_from_file("icon.ico")
+  aboutbpotd = gtk.ImageMenuItem('About bpotd')
+  aboutbpotd.set_image(aboutimg)
+  aboutbpotd.set_always_show_image(True)
+  aboutbpotd.connect('activate', bpotdabout)
+  
+  bingcomimg = gtk.Image()
+  bingcomimg.set_from_icon_name("web-browser", 22)
+  bingcom = gtk.ImageMenuItem('Go to Bing.com')
+  bingcom.set_image(bingcomimg)
+  bingcom.set_always_show_image(True)
+  bingcom.connect('activate', gobingcom)
+  
+  bpotdimg = gtk.Image()
+  bpotdimg.set_from_icon_name("gnome-photos", 22)
+  bpotdapp = gtk.ImageMenuItem('Open App')
+  bpotdapp.set_image(bpotdimg)
+  bpotdapp.set_always_show_image(True)
+  bpotdapp.connect('activate', openapp)
 
+  menu.append(bpotdapp)
+  menu.append(bingcom)
+  menu.append(aboutbpotd)
+  menu.append(hr)
+  menu.append(hr)
+  menu.append(exittray)
 
-if __name__ == '__main__':
-    on='icon.ico'
-    main(on)
+  menu.show_all()
+  return menu
+  
+def quit(_):
+  gtk.main_quit()
+
+def bpotdabout(_):
+  os.system('xdg-open https://go.microsoft.com/fwlink/?linkid=2118036')
+
+def gobingcom(_):
+  os.system('xdg-open https://www.bing.com')
+
+def openapp(_):
+  os.system(CURRPATH+"/bpotd")
+
+if __name__ == "__main__":
+  main()
