@@ -1,0 +1,18 @@
+#!/usr/bin/env /usr/bin/bash
+
+title="$(curl https://www.bing.com 2>&1 | grep -oP 'og:title\" content=\".{0,80}' | cut -d '"' -f3)..."
+txt="$(curl https://www.bing.com 2>&1 | grep -oP 'id="iotd_desc".{0,450}' | cut -d '>' -f2 | cut -d "<" -f1)"
+pic=$(./curl.sh)
+
+zenity --info\
+ --title "$title" --text "$txt"\
+ --icon-name "gnome-photos"\
+ --ok-label "Open Picture"\
+ --extra-button "Read More"\
+ --width=300 --height=250
+
+if [ $? -eq 0 ]; then
+	xdg-open "$pic"
+else
+	xdg-open "https://www.bing.com$(curl https://www.bing.com 2>&1 | grep -oPi ".{0,200}Learn more</a>" | grep -oP 'href=.{0,150}' | cut -d '"' -f2)"
+fi

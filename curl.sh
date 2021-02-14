@@ -1,0 +1,1 @@
+curl https://www.bing.com 2>&1 | grep -oP '"og:image".{0,100}' | grep -oP 'content=".{0,}' | cut -d '"' -f2 | cut -d '&' -f1
