@@ -1,18 +1,24 @@
 PREFIX ?= /usr
 MYDIR ?= $(PREFIX)/lib/wackyblackie
 INSTDIR ?= $(MYDIR)/bpotd
-D ?= $(DSTDIR)$(INSTDIR)
+D ?= $(DESTDIR)$(INSTDIR)
 
 all:
-	@echo Run `sudo make install' to install.
+	@echo "Run \`sudo make install' to install."
 
 install:
 	@mkdir -p $(DESTDIR)$(INSTDIR)
 	@mkdir -p $(DESTDIR)$(INSTDIR)/images
-	@cp -p * $(DESTDIR)$(INSTDIR)
-	@rm $(D)/Makefile $(D)/gtray
-	@chmod 111 $(D)/bpotd $(D)/xtray $(D)/tray $(D)/curl.sh
-	@chmod 0000 $(D)/icon.ico $(D)/bpotd-link.sh
-	@echo 'export PATH="$(D):$PATH"' >> $$HOME/.bashrc
+	@mkdir -p $$HOME/.config/autostart
+	@cp -rp ** $(DESTDIR)$(INSTDIR)
+	@rm $(D)/Makefile
+	@rm -rf $(D)/docs
+	@chmod +x $(D)/bpotd $(D)/tray $(D)/curl.sh $(D)/bg.sh
+	@echo 'export PATH="$(D):$$PATH"' >> $$HOME/.bashrc
+	@echo -e '#!/bin/sh\n$(D)/bg.sh' >> /etc/cron.daily/zz-bpotd
+	@echo -e '[Desktop Entry]\nType=Application\nName=bpotd Tray\nExec=$(D)/tray\nIcon=$(D)/icon.ico\nX-GNOME-Autostart-enabled=true' >> $$HOME/.config/autostart/bpotd-tray.desktop
+	@echo -e '[Desktop Entry]\nType=Application\nName=bpotd Background Switcher\nExec=$(D)/bg.sh\nIcon=$(D)/icon.ico\nX-GNOME-Autostart-enabled=true' >> $$HOME/.config/autostart/bpotd-bg.desktop
+	@chmod +x $(D)/bpotd-*.desktop
+	
 remove:
 	@rm -rf $(D)
