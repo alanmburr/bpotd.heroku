@@ -29,4 +29,6 @@ jobs:
       - name: Download picture of the day
         run: |
           cd docs; mkdir images; cd images
-          curl $(curl https://www.bing.com 2>&1 | grep -oP '"og:image".{0,100}' | grep -oP 'content=".{0,}' | cut -d '"' -f2 | cut -d '&' -f1) -o $(date +%F).jpg 
+          curl $(curl https://www.bing.com 2>&1 | grep -oP '"og:image".{0,100}' | grep -oP 'content=".{0,}' | cut -d '"' -f2 | cut -d '&' -f1) -o $(date +%F).jpg
+          git add $(date +%F).jpg
+          git commit -m "Add picture for $(date +%F)"
