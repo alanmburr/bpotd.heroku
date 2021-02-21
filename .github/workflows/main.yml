@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Download picture of the day
-        run: echo $GITHUB_WORKSPACE
+        run: tree ..
