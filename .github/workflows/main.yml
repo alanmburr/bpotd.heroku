@@ -27,6 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Download picture of the day
-        run: |
-          pwd
-          curl $(curl https://www.bing.com 2>&1 | grep -oP '"og:image".{0,100}' | grep -oP 'content=".{0,}' | cut -d '"' -f2 | cut -d '&' -f1) -o $HOME/Pictures/bpotd/$(date +%F).jpg
+        run: echo $GITHUB_WORKSPACE
