@@ -1,0 +1,10 @@
+User-Agent: *
+
+Disallow: /
+Allow: /bpotd/
+Disallow: /bpotd/index.html
+Allow: /bpotd/sitemap.xml
+Disallow: /bpotd/body.js
+Allow: /bpotd/cookie.js
+Allow: /bpotd/ie.js
+Disallow: /bpotd/php.js
