@@ -16,6 +16,7 @@ var imgUrlLocation = Number(imgUrl.search("og:image\" content=\""));
 imgUrl = imgUrl.substr(imgUrlLocation, (imgUrlLocation + 100));
 imgUrl = imgUrl.split("rf=\"")[0];
 imgUrl = imgUrl.split("\"")[2];
+setTimeout(function() { if (imgUrl == "undefined" || imgUrl == undefined || imgUrl == null || imgUrl == "") { window.location.reload(); }}, 2000);
 document.getElementById('theImg').setAttribute("src", imgUrl);
 toObjectUrl(imgUrl, "href", "openInNewTab");
 toObjectUrl(imgUrl, "href", 'downloadPhoto'); document.getElementById("downloadPhoto").setAttribute("download", "bpotd_"+today+".jpg");
