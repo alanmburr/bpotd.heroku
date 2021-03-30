@@ -90,6 +90,7 @@ readmore = readmore.split("href=\"")[1];
 readmore = readmore.split("\"")[0];
 readmore = "https://www.bing.com"+readmore;
 readmore = readmore.replace(/&quot;/gi, "\"");
+readmore = readmore.replace(/&amp;/gi, "&");
 
 if (imgAlt == "undefined" || imgAlt == undefined || imgAlt == null || imgAlt == "") {
     setTimeout(function() { location.reload(); }, 2000);
