@@ -31,7 +31,7 @@ imgUrl = imgUrl.split("rf=\"")[0];
 imgUrl = imgUrl.split("\"")[2];
 
 if (imgUrl == undefined || imgUrl == "undefined" || imgUrl == null || imgUrl == "null" || imgUrl == "") {
-    setTimeout(function() { location.reload(); }, 1000);
+    setTimeout(function() { location.reload(); }, 2000);
 }
 
 var imgHeight = baseUrl;
@@ -92,7 +92,7 @@ readmore = "https://www.bing.com"+readmore;
 readmore = readmore.replace(/&quot;/gi, "\"");
 
 if (imgAlt == "undefined" || imgAlt == undefined || imgAlt == null || imgAlt == "") {
-    setTimeout(function() { location.reload(); }, 1000);
+    setTimeout(function() { location.reload(); }, 2000);
 } else {
     document.title = imgAlt+"...";
 }
