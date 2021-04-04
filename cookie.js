@@ -22,10 +22,15 @@ function getCookie(cname) {
 }
   
 function checkCookie() {
-    var accepted = getCookie("cookiesAccepted");
+    var site = location.href.split("/")[2].replaceAll(".", "_");
+    var accepted = getCookie(site+"_cookiesAccepted");
     if (accepted != "") {
       document.getElementById('right').style.display = "none";
     } else {
         document.getElementById('right').style.display = "initial";
     }
 }
+
+$(function() {
+    checkCookie();
+});
