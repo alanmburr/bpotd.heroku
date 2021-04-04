@@ -204,7 +204,7 @@ $(function () {
         $("#share_link").css("color", "initial");
     });
     $("#share_mini").on("click", function(){
-        if (gid('mini_shareMenu').style.display == "none") {
+        if (document.getElementById('mini_shareMenu').style.display == "none") {
             $("#mini_shareMenu").css("display", "inline");
             $("#mini_shareMenu").css("filter", "none");
         } else {
