@@ -168,6 +168,7 @@ $(function () {
         }
     });
     $(".emailshare").on("click", function() {
+        var imgAlt = document.getElementById("theImgAlt").innerHTML;
         var shareEmail = document.createElement("A");
         shareEmail.href = "mailto:?subject="+imgAlt+"&body=Check out today's photo on Bing%E2%84%A2 with bpotd!%0D%0A"+location.href+"%0D%0A%0D%0ASent on behalf of "+location.href.split("/")[2]+".";
         shareEmail.click();
