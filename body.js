@@ -12,6 +12,28 @@ function toObjectUrl(url, outputTYPE,outputID) {
         });
 }
 
+function toDataUrl(url, outputType, outputId) {
+    var dwnl = new Image();
+    dwnl.crossOrigin = 'Anonymous';
+
+    // The magic begins after the image is successfully loaded
+    dwnl.onload = function () {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d');
+        canvas.height = dwnl.naturalHeight;
+        canvas.width = dwnl.naturalWidth;
+        ctx.drawImage(dwnl, 0, 0);
+        // Unfortunately, we cannot keep the original image type, so all images will be converted to PNG
+        // For this reason, we cannot get the original Base64 string
+        var uri = canvas.toDataURL('image/png'),
+            b64 = uri.replace(/^data:image.+;base64,/, 'data:image/png;base64,');
+
+        document.getElementById(outputId).setAttribute(outputType, b64); //-> "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg=="
+    };
+    dwnl.src = url;
+    //from: https://base64.guru/developers/javascript/examples/convert-image
+}
+
 var imgUrl = baseUrl;
 var imgUrlLocation = Number(imgUrl.search("og:image\" content=\""));
 imgUrl = imgUrl.substr(imgUrlLocation, (imgUrlLocation + 100));
@@ -213,12 +235,19 @@ $(function () {
     });
 });
 function declareThese() {
-    toObjectUrl(imgUrl, "href", "openInNewTab");
-    toObjectUrl(imgUrl, "href", 'downloadPhoto');
+    if (navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){
+        toDataUrl(imgUrl, "href", "openInNewTab");
+        toDataUrl(imgUrl, "href", 'downloadPhoto');
+        toDataUrl(imgUrl, "href", 'downloadPhotoQuickmenu');
+        toDataUrl(imgUrl, "href", 'downloadPhotoQuickmenu_mini');
+    } else {
+        toObjectUrl(imgUrl, "href", "openInNewTab");
+        toObjectUrl(imgUrl, "href", 'downloadPhoto');
+        toObjectUrl(imgUrl, "href", 'downloadPhotoQuickmenu');
+        toObjectUrl(imgUrl, "href", 'downloadPhotoQuickmenu_mini');
+    }
     document.getElementById("downloadPhoto").setAttribute("download", "bpotd_"+today+".jpg");
-    toObjectUrl(imgUrl, "href", 'downloadPhotoQuickmenu');
     document.getElementById("downloadPhotoQuickmenu").setAttribute("download", "bpotd_"+today+".jpg");
-    toObjectUrl(imgUrl, "href", 'downloadPhotoQuickmenu_mini');
     document.getElementById("downloadPhotoQuickmenu_mini").setAttribute("download", "bpotd_"+today+".jpg");
     document.getElementById("theImgAlt").innerHTML = imgDesc;
 }
