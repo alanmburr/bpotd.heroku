@@ -12,5 +12,4 @@ function stopIEbrowsing(ifNotIE) {
         return false; 
     }
 }
-
-addEventListner("load", stopIEbrowsing());
+stopIEbrowsing();
