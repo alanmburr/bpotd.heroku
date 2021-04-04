@@ -2,7 +2,7 @@ function stopIEbrowsing(ifNotIE) {
     if (navigator.userAgent.indexOf('MSIE')!==-1 || navigator.appVersion.indexOf('Trident/') > -1){
         document.body.innerHTML = "<div id=\"incompatibleBrowserDiv\"><title>Incompatble Browser</title><meta charset=\"utf-8\">"+
             "<link href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" rel=\"stylesheet\"/>" +
-            "<title>Incompatible Browser: " + navigator.userAgent.split(";")[0]+";"+navigator.userAgent.split(";")[1]+";"+navigator.userAgent.split(";")[2]+")" +
+            "<title>Incompatible Browser: " + navigator.userAgent.split(";")[0]+";"+navigator.userAgent.split(";")[1]+";"+navigator.userAgent.split(";")[2]+")"+"</title>" +
             "<center><h1>Your browser is not compatible with this webpage.</h1>" +
             "<p>Try one of these browsers: <a href=\"https://firefox.com\">Mozilla Firefox</a>, " +
             "<a href=\"https://chrome.com\">Google Chrome</a>, <a href=\"https://microsoft.com/edge\">Microsoft Edge</a></p>" +
