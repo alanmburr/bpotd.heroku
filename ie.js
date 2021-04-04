@@ -13,6 +13,4 @@ function stopIEbrowsing(ifNotIE) {
     }
 }
 
-$(function() {
-    stopIEbrowsing(); 
-});
+addEventListner("load", stopIEbrowsing());
