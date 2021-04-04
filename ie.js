@@ -13,4 +13,6 @@ function stopIEbrowsing(ifNotIE) {
     }
 }
 
-document.onload = stopIEbrowsing(); 
+$(function() {
+    stopIEbrowsing(); 
+});
