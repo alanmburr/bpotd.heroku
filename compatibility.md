@@ -1,6 +1,5 @@
 ---
 title: Compatibility for bpotd.herokuapp.com
-permalink: /compatibility.html
 ---
 
 # Comaptibility testing for [```bpotd.herokuapp.com```](https://bpotd.herokuapp.com)
