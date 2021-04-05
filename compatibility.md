@@ -25,17 +25,17 @@ title: Compatibility for bpotd.herokuapp.com
 | Edge 89 | Windows 10 | ✔️ Pass |
 | Edge 89 | Windows 8.x | ✔️ Pass |
 | Edge 89 | Windows 7 | ✔️ Pass |
-| IE 11 | Windows 10 | [❔ Unknown](#ie-on-windows) |
-| IE 6+ | Windows 8.x | [❌ Fail](#ie-on-windows) |
-| IE 6+ | Windows 7 | [❌ Fail](#ie-on-windows) |
-| IE 6+ | Windows XP | [❌ Fail](#ie-on-windows) |
+| IE 11 | Windows 10 | [❔ Unknown](#ie-on-windows) | ```download fail, menu fail```
+| IE 6+ | Windows 8.x | [❌ Fail](#ie-on-windows) | ```above```
+| IE 6+ | Windows 7 | [❌ Fail](#ie-on-windows) | ```above```
+| IE 6+ | Windows XP | [❌ Fail](#ie-on-windows) | ```above```
 #### Opera
 | Version | OS | Pass/Fail | 
 | :--- | :---: | :--- |
 | Opera 75 | Windows 10 | ✔️ Pass |
 | Opera 75 | Windows 8.x | ✔️ Pass |
 | Opera 75 | Windows 7 | ✔️ Pass |
-| Opera 36 | Windows XP | [❔ Unknown](#opera-36-on-windows) |
+| Opera 36 | Windows XP | [❔ Unknown](#opera-36-on-windows) | ```menu fail```
 #### Yandex
 | Version | OS | Pass/Fail |
 | :--- | :---: | :--- |
