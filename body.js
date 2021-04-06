@@ -4,9 +4,11 @@ var ww = window.innerWidth || document.documentElement.clientWidth || document.b
 var hh = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight; 
 
 function toObjectUrl(url, outputTYPE,outputID) {
-    fetch(url).then (function(response) {
+    fetch(url)
+        .then ((response) => {
             return response.blob();
-            }).then(function(blob) {
+            })
+        .then((blob) => {
             var blobUrl = URL.createObjectURL(blob);
             document.getElementById(outputID).setAttribute(outputTYPE, blobUrl);
         });
