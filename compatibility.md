@@ -77,6 +77,12 @@ title: Compatibility for bpotd.herokuapp.com
 | Firefox 78 | macOS Mavericks | ✔️ Pass |
 | Firefox 48 | macOS Mountain Lion | [❔ Unknown](#firefox_on_macos_mountain_lion) | ```settings menu```
 #### Chrome
+| Version | OS | Pass/Fail | 
+| :--- | :---: | :--- |
+| Chrome 88 | macOS Big Sur | [❔ Unknown](#chrome_on_macos_big_sur) | ```redir ```
+| Chrome 89 | macOS Catalina | [❔ Unknown](#chrome_on_macos_big_sur) | ```redir ```
+| Chrome 89 | macOS Mojave | [❔ Unknown](#chrome_on_macos_big_sur) | ```redir ```
+| Chrome 89 | macOS High Sierra | [❔ Unknown](#chrome_on_macos_big_sur) | ```redir ```
 #### Opera
 #### Microsoft Edge
 ---
