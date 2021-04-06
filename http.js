@@ -1,3 +1,3 @@
 if (location.href.split('://')[0] == "http") {
-  location.replace(location.href.split('://')[1])
+  location.replace("https://"+location.href.split('/')[2])
 }
